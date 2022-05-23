@@ -23,11 +23,16 @@ internal func imageFromBundle(_ named: String) -> UIImage {
 }
 
 struct YPHelper {
-    static func changeBackButtonIcon(_ controller: UIViewController) {
+    static func changeBackButtonIcon(_ controller: UIViewController, target: Any? = nil, selector: Selector? = nil) {
         if YPConfig.icons.shouldChangeDefaultBackButtonIcon {
             let backButtonIcon = YPConfig.icons.backButtonIcon
-            controller.navigationController?.navigationBar.backIndicatorImage = backButtonIcon
-            controller.navigationController?.navigationBar.backIndicatorTransitionMaskImage = backButtonIcon
+            if #available(iOS 15.0, *) {
+                controller.navigationItem.leftBarButtonItem = UIBarButtonItem(image: backButtonIcon, style: .plain, target: target, action: selector)
+                controller.navigationItem.leftBarButtonItem?.tintColor = YPConfig.colors.tintColor
+            } else {
+                controller.navigationController?.navigationBar.backIndicatorImage = backButtonIcon
+                controller.navigationController?.navigationBar.backIndicatorTransitionMaskImage = backButtonIcon
+            }
         }
     }
     

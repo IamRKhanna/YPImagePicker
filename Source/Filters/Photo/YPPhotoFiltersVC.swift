@@ -83,12 +83,14 @@ open class YPPhotoFiltersVC: UIViewController, IsMediaFilterVC, UIGestureRecogni
                                                                style: .plain,
                                                                target: self,
                                                                action: #selector(cancel))
+            navigationItem.leftBarButtonItem?.tintColor = YPConfig.colors.tintColor
             navigationItem.leftBarButtonItem?.setFont(font: YPConfig.fonts.leftBarButtonFont, forState: .normal)
         }
-        setupRightBarButton()
         
-        YPHelper.changeBackButtonIcon(self)
+        YPHelper.changeBackButtonIcon(self, target: self, selector: #selector(goBack))
         YPHelper.changeBackButtonTitle(self)
+        
+        setupRightBarButton()
         
         // Touch preview to see original image.
         let touchDownGR = UILongPressGestureRecognizer(target: self,
@@ -142,6 +144,13 @@ open class YPPhotoFiltersVC: UIViewController, IsMediaFilterVC, UIGestureRecogni
     @objc
     func cancel() {
         didCancel?()
+    }
+    
+    @objc
+    func goBack() {
+        if isFromSelectionVC == false {
+            navigationController?.popViewController(animated: true)
+        }
     }
     
     @objc

@@ -83,4 +83,12 @@ public struct YPColors {
     public var albumTintColor: UIColor = .ypLabel
     /// The color of the Album's title color
     public var albumTitleColor: UIColor = .ypLabel
+    
+    // MARK: - Filter
+    
+    /// The color of the name of filter when selected
+    public var filterNameLabelSelectedTextColor: UIColor = .ypLabel
+    
+    /// The color the name of filter when unselected
+    public var filterNameLabelUnSelectedTextColor: UIColor = .ypLabel
 }
