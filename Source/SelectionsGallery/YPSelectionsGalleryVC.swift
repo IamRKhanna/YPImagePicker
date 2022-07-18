@@ -49,7 +49,7 @@ public class YPSelectionsGalleryVC: UIViewController, YPSelectionsGalleryCellDel
         navigationItem.rightBarButtonItem?.setFont(font: YPConfig.fonts.rightBarButtonFont, forState: .normal)
         navigationController?.navigationBar.setTitleFont(font: YPConfig.fonts.navigationBarTitleFont)
         
-        YPHelper.changeBackButtonIcon(self)
+        YPHelper.changeBackButtonIcon(self, target: self, selector: #selector(goBack))
         YPHelper.changeBackButtonTitle(self)
     }
 
@@ -64,6 +64,11 @@ public class YPSelectionsGalleryVC: UIViewController, YPSelectionsGalleryCellDel
             }
         }
         didFinishHandler?(self, items)
+    }
+    
+    @objc
+    func goBack() {
+        navigationController?.popViewController(animated: true)
     }
     
     public func selectionsGalleryCellDidTapRemove(cell: YPSelectionsGalleryCell) {
