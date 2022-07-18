@@ -244,9 +244,7 @@ internal final class YPLibraryVC: UIViewController, YPPermissionCheckable {
             v.collectionView.selectItem(at: IndexPath(row: 0, section: 0),
                                         animated: false,
                                         scrollPosition: UICollectionView.ScrollPosition())
-            if !isMultipleSelectionEnabled && YPConfig.library.preSelectItemOnMultipleSelection {
-                addToSelection(indexPath: IndexPath(row: 0, section: 0))
-            }
+            addToSelection(indexPath: IndexPath(row: 0, section: 0))
         } else {
             delegate?.libraryViewHaveNoItems()
         }
