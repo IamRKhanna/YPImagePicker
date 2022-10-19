@@ -203,6 +203,7 @@ extension YPPhotoFiltersVC: UICollectionViewDataSource {
 extension YPPhotoFiltersVC: UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedFilter = filters[indexPath.row]
+        self.inputPhoto.appliedFilterName = selectedFilter?.applier == nil ? nil : selectedFilter?.name
         currentlySelectedImageThumbnail = filteredThumbnailImagesArray[indexPath.row]
         self.v.imageView.image = currentlySelectedImageThumbnail
     }
